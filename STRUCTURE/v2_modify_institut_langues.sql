@@ -30,7 +30,7 @@ CHECK (Date_Fin > Date_Debut);
 --Add "Montreal" a the default value for Ville
 --Ajouter "Montreal" comme valeur par defaut pour Ville
 ALTER TABLE Code_Ville_Province
-MODIFY Ville VARCHAR2(15) DEFAULT 'Montreal';
+MODIFY Ville DEFAULT 'Montreal';
 -----------------------------------------------------------
 
 
