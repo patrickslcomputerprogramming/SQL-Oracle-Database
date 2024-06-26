@@ -22,7 +22,7 @@ CREATE TABLE Cours (
     Code_Cours VARCHAR2(20) PRIMARY KEY,
     Titre VARCHAR2(45) NOT NULL,
     Description VARCHAR2(255),
-    Langue VARCHAR2(45) DEFAULT 'Français' NOT NULL 
+    Langue VARCHAR2(45) DEFAULT 'Francais' NOT NULL 
     CONSTRAINT CHECK_Langue_Cours CHECK (Langue IN ('Francais', 'English')),
     Duree NUMBER(2) NOT NULL CHECK (Duree IN (30, 60, 90))
 );
