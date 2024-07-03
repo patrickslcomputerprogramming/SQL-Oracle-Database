@@ -82,7 +82,7 @@ VALUES ('EMP014', 'Jane', 'Doe', 4);
 INSERT INTO employe 
 VALUES ('EMP015', 'Monsieur', 'Dupond', 5);
 
-
+/*
 --METTRE A JOUR UNE COLONNE
 --UPDATE A COLUMN
 --Vérifier avant les modifications
@@ -128,3 +128,4 @@ SELECT * FROM EMPLOYE WHERE ID_EMP = 'EMP015' ;
 DROP VIEW liste_employes_departements;
 DROP TABLE employe;
 DROP TABLE departement;
+*/
