@@ -1,0 +1,186 @@
+--1
+--Vérifier avant les modifications
+SELECT * FROM etudiant 
+WHERE id_etudiant = 'SONICHED200605ST' ;
+
+--Mettre à jour les données 
+UPDATE etudiant
+SET adresse = '299 Avenue des Heureux'
+WHERE id_etudiant = 'SONICHED200605ST' ; 
+
+--Vérifier après les modifications
+SELECT * FROM etudiant 
+WHERE id_etudiant = 'SONICHED200605ST' ;
+
+
+--2
+--Vérifier avant les modifications
+SELECT * FROM semestre 
+WHERE date_fin = TO_DATE('2023-12-11','YYYY-MM-DD') ;
+
+--Mettre à jour les données 
+UPDATE semestre
+SET date_fin = TO_DATE('2023-12-12','YYYY-MM-DD')
+WHERE id_semestre = (
+    SELECT id_semestre 
+    FROM semestre 
+    WHERE date_fin = TO_DATE('2023-12-11','YYYY-MM-DD')
+); 
+
+--Vérifier après les modifications
+SELECT * FROM semestre 
+WHERE date_fin = TO_DATE('2023-12-12','YYYY-MM-DD') ;
+
+
+--OU la notation suivante puisque DATE_FIN est unique aussi
+--Vérifier avant les modifications
+SELECT * 
+FROM semestre 
+WHERE date_fin = TO_DATE('2023-12-11','YYYY-MM-DD') ;
+
+--Mettre à jour les données 
+UPDATE semestre
+SET date_fin = TO_DATE('2023-12-12','YYYY-MM-DD')
+WHERE id_etudiant = TO_DATE('2023-12-11','YYYY-MM-DD')); 
+
+--Vérifier après les modifications
+SELECT * 
+FROM semestre 
+WHERE date_fin = TO_DATE('2023-12-12','YYYY-MM-DD') ;
+
+--3
+--Vérifier avant les modifications
+SELECT * 
+FROM cours 
+WHERE code_cours = 'FRANCAIS1' ;
+
+--Mettre à jour les données 
+UPDATE cours
+SET code_cours = 'FRANÇAISPARLÉ#1'
+WHERE code_cours = 'FRANCAIS1' ; 
+
+--Vérifier avant les modifications
+SELECT * FROM cours WHERE code_cours = 'FRANÇAISPARLÉ#1' ; 
+
+
+--4
+--CREATE A VIEW 
+--CREER UNE VUES
+--Vérifier avant la création de la vue 
+SELECT * FROM ville_etudiants; 
+
+--Creer une table virtuelle (vue) 
+CREATE OR REPLACE VIEW ville_etudiants AS
+SELECT e.id_etudiant, e.prenom, e.nom, 
+c.ville, c.province
+FROM etudiant e, code_ville_province c
+WHERE e.code_postal = c.code_postal;
+
+--Vérifier après la création de la vue 
+SELECT * FROM ville_etudiants;
+
+
+--5
+--CREATE A VIEW 
+--CREER UNE VUES
+--Vérifier avant la création de la vue 
+SELECT * FROM liste_instructeurs_cours; 
+
+--Creer une table virtuelle (vue) 
+CREATE OR REPLACE VIEW liste_instructeurs_cours AS
+SELECT i.id_instructeur, i.prenom, i.nom, 
+a.id_cours_offert,
+cs.id_semestre,
+c.titre
+FROM instructeur i, affectation a, cours_semestre cs, cours c
+WHERE i.id_instructeur = a.id_instructeur
+AND a.id_cours_offert = cs.id_cours_offert
+AND cs.code_cours = c.code_cours;
+
+--Vérifier après la création de la vue 
+SELECT * FROM liste_instructeurs_cours;
+
+
+--6
+--CREATE A VIEW 
+--CREER UNE VUES
+--Vérifier avant la création de la vue 
+SELECT * FROM liste_etudiants_cours; 
+
+--Creer une table virtuelle (vue) 
+CREATE OR REPLACE VIEW liste_etudiants_cours AS
+SELECT e.id_etudiant, e.prenom, e.nom, 
+insc.id_cours_offert,
+cs.id_semestre,
+c.titre,
+inst.id_instructeur, inst.prenom AS prenom_instructeur, inst.nom AS nom_instructeur
+FROM etudiant e, inscription insc, cours_semestre cs, cours c, instructeur inst, affectation a
+WHERE insc.id_etudiant = e.id_etudiant
+AND insc.id_cours_offert = cs.id_cours_offert
+AND cs.code_cours = c.code_cours
+AND insc.id_cours_offert = a.id_cours_offert
+AND a.id_instructeur = inst.id_instructeur;
+
+--Vérifier après la création de la vue 
+SELECT * FROM liste_etudiants_cours;
+
+
+--7
+--Vérifier avant les modifications
+SELECT * FROM inscription 
+WHERE id_etudiant = 'SONICHED200605ST'
+AND id_cours_offert = 'FR1-H22-GROUP1' ; 
+
+--Mettre à jour les données 
+DELETE FROM inscription
+WHERE id_etudiant = 'SONICHED200605ST'
+AND id_cours_offert = 'FR1-H22-GROUP1' ;
+
+--Vérifier après les modifications
+SELECT * FROM inscription 
+WHERE id_etudiant = 'SONICHED200605ST'
+AND id_cours_offert = 'FR1-H22-GROUP1' ; 
+
+--8
+--Vérifier avant les modifications
+SELECT * FROM affectation 
+WHERE id_instructeur = 'JANEROE20001010DF'
+AND id_cours_offert = 'EN1-H22-GROUP1' ; 
+
+--Mettre à jour les données 
+DELETE FROM affectation
+WHERE id_instructeur = 'JANEROE20001010DF'
+AND id_cours_offert = 'EN1-H22-GROUP1' ; 
+
+--Vérifier après les modifications
+SELECT * FROM affectation 
+WHERE id_instructeur = 'JANEROE20001010DF'
+AND id_cours_offert = 'EN1-H22-GROUP1' ;
+
+
+--9
+--Vérifier avant les modifications
+SELECT * FROM cours_semestre
+WHERE id_cours_offert = 'EN1-H22-GROUP1' ; 
+
+--Mettre à jour les données 
+DELETE FROM cours_semestre
+WHERE id_cours_offert = 'EN1-H22-GROUP1' ; 
+
+--Vérifier après les modifications
+SELECT * FROM cours_semestre
+WHERE id_cours_offert = 'EN1-H22-GROUP1' ;  
+
+
+--10
+--Vérifier avant les modifications
+SELECT * FROM ville_etudiants
+WHERE id_etudiant = 'NDOE20342334RE' ; 
+
+--Mettre à jour les données 
+DELETE FROM ville_etudiants
+WHERE id_etudiant = 'NDOE20342334RE' ; 
+
+--Vérifier après les modifications
+SELECT * FROM ville_etudiants
+WHERE id_etudiant = 'NDOE20342334RE' ;  
