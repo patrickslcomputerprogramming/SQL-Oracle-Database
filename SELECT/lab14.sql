@@ -361,7 +361,7 @@ ORDER BY s.saison;
 --Creer la fonction definie par l'utilisateur
 --Qui recoit la date de naissance d'une personne (ex. etudiant, instructeur)
 --Qui calcule et retourne son age 
-CREATE OR REPLACE function calcule_age (date_naissance_recu IN DATE)
+CREATE OR REPLACE FUNCTION calcule_age (date_naissance_recu IN DATE)
 RETURN NUMBER
 IS
  age NUMBER(5,2) := 0;
@@ -387,7 +387,7 @@ ORDER BY AGE ASC;
 --Creer la fonction definie par l'utilisateur
 --Qui recoit le code d'un etudiant (id_etudiant)
 --Qui calcule et retourne le nombre de cours suivis par un etudiant
-CREATE OR REPLACE function nombre_cours_suivis(id_this_etudiant IN VARCHAR2)
+CREATE OR REPLACE FUNCTION nombre_cours_suivis(id_this_etudiant IN VARCHAR2)
 RETURN NUMBER
 IS
  quantite NUMBER(3) := 0;
