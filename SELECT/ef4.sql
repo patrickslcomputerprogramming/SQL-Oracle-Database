@@ -48,6 +48,7 @@ order by LANGUE desc ;
 
 
 --6
+--Sans NOT LIKE, la requete retournera les prenom ou nom avec lettres 2 e consecutives aussi
 select ID_ETUDIANT, PRENOM, NOM 
 from ETUDIANT
 where (PRENOM LIKE '%e%e%' AND PRENOM NOT LIKE '%ee%')
