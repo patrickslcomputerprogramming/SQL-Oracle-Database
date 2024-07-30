@@ -50,7 +50,8 @@ order by LANGUE desc ;
 --6
 select ID_ETUDIANT, PRENOM, NOM 
 from ETUDIANT
-where PRENOM LIKE '%e%e%' or NOM LIKE '%e%e%'
+where (PRENOM LIKE '%e%e%' AND PRENOM NOT LIKE '%ee%')
+OR (NOM LIKE '%e%e%' AND NOM NOT LIKE '%ee%')
 order by PRENOM asc, NOM asc;
 
 
