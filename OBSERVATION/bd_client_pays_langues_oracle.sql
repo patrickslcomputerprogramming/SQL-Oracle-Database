@@ -5,8 +5,8 @@
 
 --1-CREATE A DATABASE 
 --1-CREER UNE BASE DE DONNEES 
---Create a new user account (Replace admin123 by your own password)
---Créer un nouveau compte utilisateur (Remplacez admin123 par votre propre mot de passe)
+--Create a new user account (Replace admin456 by your own password)
+--Créer un nouveau compte utilisateur (Remplacez admin456 par votre propre mot de passe)
 CREATE USER c##bd_residents IDENTIFIED BY admin456 DEFAULT TABLESPACE USERS;
 
 --Assign privileges and roles to the new user
