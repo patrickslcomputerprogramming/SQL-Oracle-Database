@@ -15,7 +15,7 @@ DROP CONSTRAINT CHECK_Langue_Cours;
 
 ALTER TABLE Cours
 ADD CONSTRAINT CHECK_Langue_Cours
-CHECK (Langue IN('Francais','English', 'Espanol'));
+CHECK (Langue IN('Français','English', 'Espanol'));
 -------------------------------------------------
 
 --TABLE 2 Semestre
@@ -30,7 +30,7 @@ CHECK (Date_Fin > Date_Debut);
 --Add "Montreal" a the default value for Ville
 --Ajouter "Montreal" comme valeur par defaut pour Ville
 ALTER TABLE Code_Ville_Province
-MODIFY Ville DEFAULT 'Montreal';
+MODIFY Ville DEFAULT 'Montréal';
 -----------------------------------------------------------
 
 
